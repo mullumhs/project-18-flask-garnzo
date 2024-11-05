@@ -7,7 +7,7 @@ todos = []
 
 
 @app.route('/')
-def list_todos():
+def list_todos(task):
     for item in todos:
         return(item)
 
@@ -18,17 +18,17 @@ def add_todo(task):
         if task == item:
             return("Error")
         todos.append(task)
-
-    # Return back to the to-do list page
     return redirect('/')
 
 
 @app.route('/delete/<int:task_id>')
-
-def delete_todo(task_id):
-    # delete the item at the specified position in the list
-
-    # Return back to the to-do list page
+def delete(task):
+    for item in todos:
+        if task == item:
+            todos.pop(task)
+            return("Deleted")
+        else:
+            return("Error")
     return redirect('/')
 
 
